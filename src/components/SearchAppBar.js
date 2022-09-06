@@ -15,6 +15,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import LoginIcon from "@mui/icons-material/Login";
 import MuiSwitch from "./MuiSwitch";
+import { useContext } from "react";
+import { ModeContext } from "../App";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -148,7 +150,10 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
     </Menu>
   );
-
+  const { setSearchInput } = useContext(ModeContext);
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -171,6 +176,7 @@ export default function PrimarySearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={handleSearchInputChange}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

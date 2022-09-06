@@ -4,15 +4,15 @@ import jobs from "../data.json";
 import JobCards from "../components/JobCards";
 import Container from "@mui/material/Container";
 import PaginationBar from "../components/PaginationBar";
+import { useContext } from "react";
+import { ModeContext } from "../App";
 
 const totalPages = Math.round(jobs.length / 5);
 
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
-  function handlePagination(event) {
-    setCurrentPage(parseInt(event.target.textContent));
-  }
-
+  const { searchInput } = useContext(ModeContext);
+  console.log(searchInput);
   return (
     <Container>
       <Grid container spacing={2} mt={2}>
@@ -22,10 +22,7 @@ function HomePage() {
           </Grid>
         ))}
       </Grid>
-      <PaginationBar
-        totalPages={totalPages}
-        handlePagination={handlePagination}
-      />
+      <PaginationBar totalPages={totalPages} setCurrentPage={setCurrentPage} />
     </Container>
   );
 }

@@ -10,6 +10,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 export const ModeContext = createContext();
 function App() {
   const [modeValue, setModeValue] = useState(1);
+  const [searchInput, setSearchInput] = useState();
   const handleChangeMode = () => {
     setModeValue(modeValue === 1 ? 0 : 1);
   };
@@ -30,7 +31,9 @@ function App() {
   );
   return (
     <div>
-      <ModeContext.Provider value={handleChangeMode}>
+      <ModeContext.Provider
+        value={{ handleChangeMode, searchInput, setSearchInput }}
+      >
         <ThemeProvider theme={Theme}>
           <CssBaseline />
           <SearchAppBar />

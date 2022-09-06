@@ -16,9 +16,13 @@ export default function BasicCard({ job }) {
           {job.title}
         </Typography>{" "}
         <Typography variant="body1">Skills:</Typography>{" "}
-        {job.skills.slice(0, 4).map((skill) => (
-          <Typography variant="body3">{skill}</Typography>
-        ))}
+        {job.skills ? (
+          job.skills
+            .slice(0, 4)
+            .map((skill) => <Typography variant="body3">{skill}</Typography>)
+        ) : (
+          <></>
+        )}
         <Typography variant="body1">City:</Typography>{" "}
         <Typography variant="body3"> {job.city}</Typography>
       </CardContent>
