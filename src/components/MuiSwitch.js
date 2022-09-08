@@ -54,7 +54,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function CustomizedSwitches() {
-  const handleChangeMode = useContext(ModeContext);
+  const { handleChangeMode } = useContext(ModeContext);
   return (
     <FormGroup>
       <FormControlLabel
