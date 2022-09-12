@@ -13,8 +13,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import LoginIcon from "@mui/icons-material/Login";
 import MuiSwitch from "./MuiSwitch";
+import SignInModal from "./SignInModal";
 import { useContext } from "react";
 import { ModeContext } from "../App";
 
@@ -181,10 +181,22 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <MuiSwitch />
             <IconButton
               size="small"
               sx={{
+                padding: 2,
+                "&:hover": {
+                  backgroundColor: "transparent",
+                },
+              }}
+            >
+              <MuiSwitch />
+            </IconButton>
+
+            <IconButton
+              size="small"
+              sx={{
+                padding: 2,
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
@@ -195,6 +207,7 @@ export default function PrimarySearchAppBar() {
             <IconButton
               size="small"
               sx={{
+                padding: 2,
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
@@ -205,26 +218,14 @@ export default function PrimarySearchAppBar() {
             <IconButton
               size="small"
               sx={{
+                padding: 2,
                 mr: 2,
                 "&:hover": {
                   backgroundColor: "transparent",
                 },
               }}
             >
-              <LoginIcon />
-              <Typography
-                marginLeft={2}
-                alignSelf="center"
-                variant="body2"
-                noWrap
-                htmlFor={<LoginIcon />}
-                component="div"
-                sx={{
-                  display: { xs: "none", sm: "block", cursor: "pointer" },
-                }}
-              >
-                Sign in
-              </Typography>
+              <SignInModal />
             </IconButton>
           </Box>
         </Toolbar>

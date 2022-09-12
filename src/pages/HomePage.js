@@ -12,17 +12,32 @@ const totalPages = Math.round(jobs.length / 5);
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
   const { searchInput } = useContext(ModeContext);
-  console.log(searchInput);
+
   return (
     <Container>
       <Grid container spacing={2} mt={2}>
-        {jobs.slice((currentPage - 1) * 5, currentPage * 5).map((job) => (
-          <Grid item xs={12} lg={4}>
-            <JobCards job={job} />
-          </Grid>
-        ))}
+        {jobs
+          .filter((job) => {
+            let filter = searchInput;
+            if (!filter) return true;
+            let name = job.title.toLowerCase();
+            return name.startsWith(filter.toLowerCase());
+          })
+          .slice((currentPage - 1) * 5, currentPage * 5)
+          .map((job) => (
+            <Grid item xs={12} lg={4} key={job.id}>
+              <JobCards job={job} />
+            </Grid>
+          ))}
       </Grid>
-      <PaginationBar totalPages={totalPages} setCurrentPage={setCurrentPage} />
+      {searchInput ? (
+        <></>
+      ) : (
+        <PaginationBar
+          totalPages={totalPages}
+          setCurrentPage={setCurrentPage}
+        />
+      )}
     </Container>
   );
 }
